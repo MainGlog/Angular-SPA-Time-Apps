@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-
+import {Component} from '@angular/core';
+import {OnInit} from '@angular/core';
 @Component({
   selector: 'app-clock',
   imports: [],
@@ -8,34 +8,28 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrl: './clock.component.css'
 })
 export class ClockComponent {
-  @Output() timeChanged: EventEmitter<void> = new EventEmitter<void>();
-  hours: number = 0;
-  minutes: number = 0;
-  seconds: number = 0;
+  hours: string = '';
+  minutes: string = '';
+  seconds: string = '';
   meridiem: string | undefined;
 
   // TODO functions and members are not accessible in the html
   // functions are not available inside the class
-  constructor()
-  {
-    setInterval(this.calculateTime, 1000);
+  constructor() {
+
+    setInterval(() =>
+    {
+      let date: Date = new Date();
+      this.hours = this.addZero((date.getHours() >= 12 ?
+          (date.getHours() % 12 + 12).toString() :
+          date.getHours().toString()));
+      this.minutes = this.addZero(date.getMinutes().toString());
+      this.seconds = this.addZero(date.getSeconds().toString());
+      this.meridiem = Number(date.getHours()) <= 12 ? 'PM' : 'AM';
+    }, 1000);
   }
   addZero(num: string): string
   {
-    return parseInt(num) >= 10 ? num : "0" + num;
-  }
-  calculateTime(): void
-  {
-    this.timeChanged.emit();
-    let date: Date = new Date();
-    this.hours = date.getHours();
-    this.minutes = date.getMinutes();
-    this.seconds = date.getSeconds();
-    document.getElementById('hours')!.textContent = this.hours.toString();
-    document.getElementById('minutes')!.textContent = this.minutes.toString();
-    document.getElementById('seconds')!.textContent = this.seconds.toString();
-    document.getElementById('meridiem')!.textContent = this.meridiem!.toString();
-    this.meridiem = this.hours >= 12 ? 'AM' : 'PM';
-    console.log(`${this.hours}:${this.minutes}:${this.seconds} ${this.meridiem}`);
+    return String(parseInt(num) >= 10 ? num : "0" + num);
   }
 }

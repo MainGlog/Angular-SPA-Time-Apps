@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Time Applications</a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar nav">
+        <a class="nav-link"
+           routerLink="/" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
+          Clock</a>
+        <a class="nav-link"
+           routerLink="/stopwatch" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"> <!-- routerlinkactive means the exact path must match for the active tag to be applied -->
+          Stopwatch
+        </a>
+        <a class="nav-link"
+           routerLink="/timer" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
+          Timer
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

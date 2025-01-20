@@ -1,0 +1,23 @@
+<div class="my-3" id="stopwatch-container">
+  <div class="container d-flex">
+    <div class="border-0">
+      <h2>{{this.hours}}</h2>
+    </div>
+    <h2>:</h2>
+    <div class="border-0">
+      <h2>{{this.minutes}}</h2>
+    </div>
+    <h2>:</h2>
+    <div class="border-0" >
+      <h2>{{this.seconds}}</h2>
+    </div>
+    <h2>:</h2>
+    <div class="border-0">
+      <h2>{{this.ms}}</h2>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" (click)="start()" type="button">Start</button>
+  <button class="btn btn-danger" (click)="stop()" type="button">Stop</button>
+  <button class="btn btn-primary" (click)="reset()" type="button">Reset</button>
+</div>
